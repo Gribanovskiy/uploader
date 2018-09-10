@@ -13,7 +13,7 @@ function save (string $fileName)
 {
 
     $tmp = $_FILES[UPLOADED_FILE_NAME]['tmp_name'];
-    $ext = extraxtExt($fileName);
+    $ext = extraxtExt($_FILES[UPLOADED_FILE_NAME]['name']);
     $dir = sprintf('./uploaded/%s.%s', $fileName, $ext);
     try {
         move_uploaded_file($tmp, $dir);
@@ -25,7 +25,7 @@ function save (string $fileName)
 
 function extraxtExt(string $fileName): string
 {
-    $ext = $_FILES[UPLOADED_FILE_NAME]['name'];
+    $ext = $fileName;
     $ext = explode('.', $ext);
 
     return end($ext);
